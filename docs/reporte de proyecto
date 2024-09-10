@@ -1,0 +1,9 @@
+# Comparación de datos de expresión de la bacteria fijadora de nitrógeno FRANKIA. 
+
+### Introducción: 
+
+##### Planteamiento del problema:
+La bacteria fijadora de nitrógeno FRANKIA tiene un papel importante en la ecología, por su presencia en las raíces de los árboles alrededor de todo el mundo. 
+Es por esto que ha sido elegida para analizar su nivel de expresión en diferentes condiciones, que son deficiencia y abundancia de nitrógeno. Las cepas seleccionadas son: EAN1pec, EuIc, EUN1f. 
+Los datos se obtuvieron de la basa de datos de GEO: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64517. Para obtener los datos de la expresión génica se secuenciaron los transcritos con el secuenciador Ilumina. 
+Estas dos condiciones son importantes para analizar la expresión y acitvación o represión de genes. 
