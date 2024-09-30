@@ -25,5 +25,60 @@ Los datos de entrada que se presentan para este proyecto se presentan en 6 archi
 Los datos fueron descargados de GEO (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64517) en formato slsx, por lo que para su mejor manejo, se cambió el formato a uno más amigable y manejable con comandos de bash. Para analizar los datos, diferencias y similitudes se llevaron a cabo los comandos y estos crearon algunos archvicos intermedios. 
 Las lecturas fueron conseguida mediante el método RNAseq, secuenciados por Ilumina. Todos los archivos cuentan con la misma estructura: Nombre del cromosoma  y cromosoma(todos los archivos tienen el mismo nombre y un único cromosama bacteriano), región de expresión, el valor de expresión, la longitud del gen (dato qque no será necesario agregarlo a la investigación), cuenta con los valores de RPM, cuyos datos se normalizarán para trabajarlo desde lods sets de datos. y por último las lecturas genéticas únicas. Se crearon, además archivos donde se aislan las columnas que posteriormente se analizan para el mejor acomodo de datos. 
 Todos los datos anteriormente mencionados se encuentran en la carpeta de data, en un archivo comprimido. 
-Con lo dicho anteriormente ¿Qué genes en la bacteria fijadora se encuentran prendidos o apagados en cada una de las condiciones a las que fueron expuestas. 
+Con lo dicho anteriormente ¿Qué genes en la bacteria fijadora se encuentran prendidos o apagados en cada una de las condiciones a las que fueron expuestas? ¿Qué tanto se expresaron cada uno de los genes prendidos? 
 
+## A. Datos de entrada: 
+Los datos fueron descargados desde GEO y se encuentran en:
+```
+|--data
+|  |--GSM1573196_Batch_1_EAN1pec_NH4
+|  |--GSM1573197_Batch_1_EAN1pec_N2
+|  |--GSM1573202_Batch_3_EAN1pec_NH4
+|  |--GSM1573203_Batch_3_EAN1pec_N2
+|  |--GSM1573208_Batch_4_EAN1pec_NH4
+|  |--GSM1573209_Batch_4_EAN1pec_N2
+```
+##### Metadatos:
+Fecha de descarga: 22/10/2024
+
+| Archivo | Descripción | tipo 
+|:--  |:--  |:--|
+| GSM1573196_Batch_1_EAN1pec_NH4 | datos de expresión de EAN1pec, del primer lote y en abundancia de NH4. | formato slsx |
+| GSM1573197_Batch_1_EAN1pec_N2 | datos de expresión de EAN1pec, del primer lote y en deficiencia de N2. | formato slsx |
+| GSM1573202_Batch_3_EAN1pec_NH4 | datos de expresión de EAN1pec, del segundo lote y en abundancia de NH4. | formato slsx |
+| GSM1573203_Batch_3_EAN1pec_N2 | datos de expresión de EAN1pec, del segundo lote y en deficiencia de N2. | formato slsx |
+| SM1573208_Batch_4_EAN1pec_NH4 | datos de expresión de EAN1pec, del tercer lote y en abundancia de NH4. | formato slsx |
+| SM1573209_Batch_4_EAN1pec_N2 | datos de expresión de EAN1pec, del tercer lote y en deficiencia de N2. | formato slsx |
+
+#### Formato de los archivos
+
+- GSM1573196_Batch_1_EAN1pec_NH4.slsx : formato slsx 
+NOTA: Todos los archivos siguen el mismo formato. 
+
+Name	Chromosome	Region	Expression value	Gene length	RPKM	Unique gene reads	Total gene reads
+Franean1_0001	CP000820	71..1654	0	1584	0	0	0
+Franean1_0002	CP000820	2937..3959	0.458768619	1023	0.458768619	5	5
+Franean1_0003	CP000820	3956..5116	1.37440914	1161	1.37440914	17	17
+Franean1_0004	CP000820	5118..6491	0.409886723	1374	0.409886723	6	6
+
+Formato: 
+> a. La primera columna es el nombre del gen o identificador, únicamente se marca la diferencia entre cada gen por el cambio en los números ascendentes. 
+> b. La segunda columna es el cromosoma, que no cambia porque solo tiene un cromosoma central. 
+> c. La tercer columna es la región del cromosoma de la que pertenece el gen seleccionado. 
+> d. La cuarta columna es el valor de expresión, es decir la cantidad de expresión de un gen o transcrito.   
+> e. La quinta columna es la longitud del gen. 
+> f. La sexta columna es el RPKM, que también se refiere al valor de expresión de cada gen pero con el valor numérico normalizado. 
+> g. La séptima columna es de lecturas genéticas únicas y sse refiere a las secuencias que fueron alineadas con gran especificidad a un lugar particular del genoma. 
+> h. La octava columna lecturas genéticas totales y es parecido a las lecturas genéticas únicas pero sin ser tan específico o con cierta ambiguedad. 
+
+#### Preguntas de investigación: 
+> ¿Qué genes en la bacteria fijadora se encuentran prendidos o apagados en cada una de las condiciones a las que fueron expuestas?
+Respuesta: Primero, hacer la normalización entre todos los archivos por lotes de cada condición para posteriormente comprobar el nivel de expresión y guardar aquellos genes que estén prendidos y aquellos que estén apagados.
+> ¿Qué tanto se expresó cada uno de los genes prendidos? 
+Respuesta: Al igual que en la respuesta anterior, los datos se deberán normalizar para poder compararlos, hacer un heatmap para mostrar, de acuerdo a la intensidad del color en la expresión de los genes en las diferentes condiciones. 
+
+## Resultados:
+
+## Análisis y conclusiones: 
+
+## Referencias: 
