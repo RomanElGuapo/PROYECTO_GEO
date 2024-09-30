@@ -14,6 +14,16 @@ Como es de esperar, EAN1pec no es la excepción, contiene un set genético parti
 
 ##### Planteamiento del problema:
 La bacteria fijadora de nitrógeno FRANKIA tiene un papel importante en la ecología, por su presencia en las raíces de los árboles alrededor de todo el mundo. 
-Es por esto que ha sido elegida para analizar su nivel de expresión en diferentes condiciones, que son deficiencia y abundancia de nitrógeno. Las cepas seleccionadas son: EAN1pec, EuIc, EUN1f. 
-Los datos se obtuvieron de la basa de datos de GEO: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64517. Para obtener los datos de la expresión génica se secuenciaron los transcritos con el secuenciador Ilumina. 
-Estas dos condiciones son importantes para analizar la expresión y acitvación o represión de genes. 
+Es por esto que ha sido elegida para analizar su nivel de expresión en diferentes condiciones, que son deficiencia y abundancia de nitrógeno. La cepa seleccionada es EAN1pec. 
+Los datos se obtuvieron de la basa de datos de GEO: https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64517. Para obtener los datos de la expresión génica se secuenciaron los transcritos con el secuenciador Ilumina.
+Buscamos encontrar los genes que mientras se encuentran activados o en su caso, inactivos, le permiten a la bacteria fijadora de nitrógeno adaptarse a condiciones de estrés por deficiencia de nitrógeno. Asimismo, consideramos de sume importancia tener en cuenta el nivel de expresión, no solo conocimientos sobre la activación o inactivación de genes. 
+Aunado a lo anterior, buscamos, encontrar la manera en que logra sobrevivir en estas condiciones de experimentación que también se pueden ver en la naturaleza y con esto comprender la interacción entre niveles de expresión y adaptabilidad de los organismos a ciertas condiciones. 
+La importancia de nuestra investigación resalta en que el nitrógeno es un elemento esencial para el desarrollo de muchas plantas, tanto para sintetizar ácidos nucléicox y la producción de proteínas. 
+
+## Metodología:  
+Los datos de entrada que se presentan para este proyecto se presentan en 6 archivos, de la misma cepa EAN1pec. Estos archivo se organizan de modo que se presentan dos condiciones, abundancia de nitrógeno (NH4) y por otro lado la deficiencia de nitrógeno (N2). Cada condición produjo tres archivos más, con los niveles de expresión, es decir, está organizado por lotes. Esto es importante, pues debido a que los tres lotes presentan diferencias algunas columnas de exresión y lecturas, los datos se deberán normalizar para poder comparar. 
+Los datos fueron descargados de GEO (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64517) en formato slsx, por lo que para su mejor manejo, se cambió el formato a uno más amigable y manejable con comandos de bash. Para analizar los datos, diferencias y similitudes se llevaron a cabo los comandos y estos crearon algunos archvicos intermedios. 
+Las lecturas fueron conseguida mediante el método RNAseq, secuenciados por Ilumina. Todos los archivos cuentan con la misma estructura: Nombre del cromosoma  y cromosoma(todos los archivos tienen el mismo nombre y un único cromosama bacteriano), región de expresión, el valor de expresión, la longitud del gen (dato qque no será necesario agregarlo a la investigación), cuenta con los valores de RPM, cuyos datos se normalizarán para trabajarlo desde lods sets de datos. y por último las lecturas genéticas únicas. Se crearon, además archivos donde se aislan las columnas que posteriormente se analizan para el mejor acomodo de datos. 
+Todos los datos anteriormente mencionados se encuentran en la carpeta de data, en un archivo comprimido. 
+Con lo dicho anteriormente ¿Qué genes en la bacteria fijadora se encuentran prendidos o apagados en cada una de las condiciones a las que fueron expuestas. 
+
