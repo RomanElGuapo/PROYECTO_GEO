@@ -35,7 +35,7 @@ def parse_arguments():
 if __name__ == "__main__":
     # Parsear los argumentos de la línea de comandos
     args = parse_arguments()
-    
+    OUT_PATH = './output/'
     # Verifica si la carpeta ya existe
     if os.path.exists(OUT_PATH):
         # Elimina la carpeta existente y su contenido
