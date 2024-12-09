@@ -36,9 +36,13 @@ if __name__ == "__main__":
     # Parsear los argumentos de la línea de comandos
     args = parse_arguments()
     
-    # Definir la ruta de salida donde se guardarán los resultados
-    OUT_PATH = "./output/"
-    os.makedirs(OUT_PATH, exist_ok=True)
+    # Verifica si la carpeta ya existe
+    if os.path.exists(OUT_PATH):
+        # Elimina la carpeta existente y su contenido
+        shutil.rmtree(OUT_PATH)
+    
+    # Crea la carpeta nuevamente
+    os.makedirs(OUT_PATH)
 
     # Realizar la limpieza de los archivos de entrada
     genes_df, df_meta = limpieza_archivos.limpieza_archivos(args.archivo_1A, args.archivo_1B, args.archivo_2A, args.archivo_2B)
