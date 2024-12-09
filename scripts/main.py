@@ -5,6 +5,7 @@ import heatmap
 import unifactorial
 import matplotlib.pyplot as plt
 import argparse
+import shutil
 
 def parse_arguments():
     """
