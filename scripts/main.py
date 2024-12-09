@@ -7,49 +7,70 @@ import matplotlib.pyplot as plt
 import argparse
 
 def parse_arguments():
-    # Crear un parser
-    parser = argparse.ArgumentParser(description="Programa de análisis de expresion diferencial")
+    """
+    Función que configura y parsea los argumentos de línea de comandos.
 
-    # Definir argumentos
+    Retorna:
+    argparse.Namespace: Un objeto con los valores de los argumentos proporcionados 
+    por el usuario al ejecutar el script.
+    """
 
-        # Crear un grupo mutuamente excluyente
+    # Crear un parser para la línea de comandos
+    parser = argparse.ArgumentParser(description="Programa de análisis de expresión diferencial")
+
+    # Definir argumentos mutuamente excluyentes para elegir entre análisis multifactorial o unifactorial
     group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument('--multifactorial', action='store_true', help='Hacer el analisis por grupo y condición')
-    group.add_argument('--unifactorial', action='store_true', help='Hacer el análisis solo por condicion')
+    group.add_argument('--multifactorial', action='store_true', help='Realizar análisis por grupo y condición')
+    group.add_argument('--unifactorial', action='store_true', help='Realizar análisis solo por condición')
 
-    parser.add_argument('-1A', type=str, dest='archivo_1A',help='Archivo grupo1, condicion A',required = True)
-    parser.add_argument('-1B', type=str, dest='archivo_1B',help='Archivo grupo1, condicion B',required = True)
-    parser.add_argument('-2A', type=str, dest='archivo_2A',help='Archivo grupo2, condicion A',required = True)
-    parser.add_argument('-2B', type=str, dest='archivo_2B',help='Archivo grupo2, condicion B',required = True)
+    # Definir los argumentos para los archivos de expresión génica
+    parser.add_argument('-1A', type=str, dest='archivo_1A', help='Archivo para grupo 1, condición A', required=True)
+    parser.add_argument('-1B', type=str, dest='archivo_1B', help='Archivo para grupo 1, condición B', required=True)
+    parser.add_argument('-2A', type=str, dest='archivo_2A', help='Archivo para grupo 2, condición A', required=True)
+    parser.add_argument('-2B', type=str, dest='archivo_2B', help='Archivo para grupo 2, condición B', required=True)
 
+    # Parsear los argumentos proporcionados en la línea de comandos
     return parser.parse_args()
 
 if __name__ == "__main__":
-
+    # Parsear los argumentos de la línea de comandos
     args = parse_arguments()
     
+    # Definir la ruta de salida donde se guardarán los resultados
     OUT_PATH = "./output/"
     os.makedirs(OUT_PATH, exist_ok=True)
 
-    genes_df, df_meta = limpieza_archivos.limpieza_archivos(args.archivo_1A,
-                                                            args.archivo_1B,
-                                                            args.archivo_2A,
-                                                            args.archivo_2B)
+    # Realizar la limpieza de los archivos de entrada
+    genes_df, df_meta = limpieza_archivos.limpieza_archivos(args.archivo_1A, args.archivo_1B, args.archivo_2A, args.archivo_2B)
+
+    # Si se seleccionó el análisis multifactorial
     if args.multifactorial:
+        # Realizar el análisis multifactorial
+        dds, ds_B_vs_A, ds_Y_vs_X = analisis_multifactorial.analisis_multifactorial(genes_df, df_meta, OUT_PATH)
+        
+        # Generar y guardar los gráficos MA para condiciones y grupos
+        ds_B_vs_A.plot_MA(s=20)
+        plt.savefig(OUT_PATH + "MA_CONDICIONES.jpg", bbox_inches='tight')
+        
+        ds_Y_vs_X.plot_MA(s=20)
+        plt.savefig(OUT_PATH + "MA_GRUPOS.jpg", bbox_inches='tight')
+        
+        # Generar y guardar los mapas de calor para condiciones y grupos
+        heatmap.heatmap(dds, ds_B_vs_A)
+        plt.savefig(OUT_PATH + "HEATMAP_CONDICIONES.jpg", bbox_inches='tight')
+        
+        heatmap.heatmap(dds, ds_Y_vs_X)
+        plt.savefig(OUT_PATH + "HEATMAP_GRUPOS.jpg", bbox_inches='tight')
       
-      dds, ds_B_vs_A, ds_Y_vs_X = analisis_multifactorial.analisis_multifactorial(genes_df,df_meta,OUT_PATH)
-      ds_B_vs_A.plot_MA(s=20)
-      plt.savefig(OUT_PATH + "MA_CONDICIONES.jpg", bbox_inches='tight')
-      ds_Y_vs_X.plot_MA(s=20)
-      plt.savefig(OUT_PATH + "MA_GRUPOS.jpg", bbox_inches='tight')
-      heatmap.heatmap(dds, ds_B_vs_A)
-      plt.savefig(OUT_PATH + "HEATMAP_CONDICIONES.jpg", bbox_inches='tight')
-      heatmap.heatmap(dds, ds_Y_vs_X)
-      plt.savefig(OUT_PATH + "HEATMAP_GRUPOS.jpg", bbox_inches='tight')
-      
+    # Si se seleccionó el análisis unifactorial
     if args.unifactorial:
-      dds, ds = unifactorial.analisis_unifactorial(genes_df, df_meta,OUT_PATH)
-      ds.plot_MA(s=20)
-      plt.savefig(OUT_PATH + "MA_CONDICIONES.jpg", bbox_inches='tight')
-      heatmap.heatmap(dds, ds)
-      plt.savefig(OUT_PATH + "HEATMAP_CONDICIONES.jpg", bbox_inches='tight')
+        # Realizar el análisis unifactorial
+        dds, ds = unifactorial.analisis_unifactorial(genes_df, df_meta, OUT_PATH)
+        
+        # Generar y guardar el gráfico MA para condiciones
+        ds.plot_MA(s=20)
+        plt.savefig(OUT_PATH + "MA_CONDICIONES.jpg", bbox_inches='tight')
+        
+        # Generar y guardar el mapa de calor para condiciones
+        heatmap.heatmap(dds, ds)
+        plt.savefig(OUT_PATH + "HEATMAP_CONDICIONES.jpg", bbox_inches='tight')
