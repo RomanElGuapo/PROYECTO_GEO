@@ -79,7 +79,23 @@ Respuesta: Al igual que en la respuesta anterior, los datos se deberán normaliz
 
 ## Resultados:
 
+![Figura 1: Primer PCA](image-1.png)
+![Figura 2: Segundo PCA](image-2.png)
+![Figura 3: Tercer PCA](image-3.png)
+Las figuras muestran las imágenes correspondientes a los PCA de cada lote. 
+
+![Figura 4: La unión de todos los PCA anteriores](image-4.png)
+
+![Figura 5: Diagrama de Venn con la expresión de los genes](image-5.png)
+
+![Figura 6: Heatmap que permite observar el nivel de expresión](image.png)
+
 ## Análisis y conclusiones:
+Los resulatados que se muestran en el PCA se tomaron en cuenta para los ejes los datos normalizados de expresión, los datos correspondientes a RPKM. Los puntos simmbolizan los genes que se encuentran. Nos parece algo que resaltar que, aún cuando se hizo el análisis de todos los lotes, la expresión de los genes se muestran diferentes. Sin embargo si existen algunos que concuerdan. Además, no permite saber que hay ciertos genes que se expresan a un nivel superior que los demás. Los colores que se muestran en la gráfica, corresponden a cada uno de los lotes. 
+Antes de realizar el diagrama de Venn, se verifiicó que las regiones fueran iguales, con la finalidad de hacer un análisis adecuado, sin embargo, se analizó el conjunto de genes expresados en ambas condiciones, únicamente para ver la expresión y el nivel. Con esto comprobamos que en proporción de genes compartidos en realidad es muy baja en comparación con los que se expresan en la condición N2. Los genes compartidos, no presentan expresión. Por otro lado, los que se muestran en cada una de las condiciones, presentan claramente, niveles de expresión distintos. 
+Con el heatmap, buscamos comparar el nivel de expresión de los datos crudos. Para ello, restamos la magnitud de la expresión de cada gen. Con el heatmap, podemos concluir, que la mayor parte de los genss se expresa de una manera muy similar, pues la variación del color no es muy evidente, esto al menos, como un primer vistazo. Pero si analizamos con más detenimiento, podemos ver que hay algunas líneas rojas y otras azules un poco más intensos. 
+
+Con los datos aquí presentes, podemos concluir que si existen diferencias importantes en la expresión de genes en las diferentes condiciones. Lo que a su vez, sugiere que la bacteria, aún cuando es simbiótica, necesita activar un mecanismo que le permita sobrevivir a las condiciones de estrés en donde está expuesta. Aún cuando hay genes housekeeping, en sus condiciones simbióticas no necesitan expresar tantos genes.
 
 ## Referencias:
-
+Anita Sellstedt, Kerstin H. Richau, Aspects of nitrogen-fixing Actinobacteria, in particular free-living and symbiotic Frankia, FEMS Microbiology Letters, Volume 342, Issue 2, May 2013, Pages 179–186, https://doi.org/10.1111/1574-6968.12116
