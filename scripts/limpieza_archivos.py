@@ -65,6 +65,11 @@ def read_table(archivo):
     Retorna:
     Series: Una serie de pandas con los valores de la columna "Unique gene reads" del archivo.
     """
-    df = pd.read_csv(archivo, sep='\t')
+    if archivo.endswith('.csv'):
+        df = pd.read_csv(archivo)
+    elif archivo.endswith('.tsv') or archivo.endswith('.txt'):
+        df = pd.read_csv(archivo, sep='\t')
+    else:
+        raise ValueError("Formato de archivo no soportado. Solo se aceptan .csv, .tsv y .txt.")
     sample = pd.Series(data=df["Unique gene reads"], copy=False)
     return sample

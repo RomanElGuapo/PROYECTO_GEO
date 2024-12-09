@@ -22,8 +22,8 @@ La importancia de nuestra investigación resalta en que el nitrógeno es un elem
 
 ## Metodología:  
 Los datos de entrada que se presentan para este proyecto se presentan en 6 archivos, de la misma cepa EAN1pec. Estos archivos se organizan de modo que se presentan dos condiciones, abundancia de nitrógeno (NH4) y por otro lado la deficiencia de nitrógeno (N2). Cada condición produjo tres archivos más, con los niveles de expresión, es decir, está organizado por lotes. Esto es importante, pues debido a que los tres lotes presentan diferencias en algunas columnas de expresión y lecturas, los datos se deberán normalizar para poder comparar.
-Los datos fueron descargados de GEO (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64517) en formato slsx, por lo que para su mejor manejo, se cambió el formato a uno más amigable y manejable con comandos de bash. Para analizar los datos, diferencias y similitudes se llevaron a cabo los comandos y estos crearon algunos archivos intermedios.
-Las lecturas fueron conseguidas mediante el método RNAseq, secuenciados por Ilumina. Todos los archivos cuentan con la misma estructura: Nombre del cromosoma  y cromosoma(todos los archivos tienen el mismo nombre y un único cromosoma bacteriano), región de expresión, el valor de expresión, la longitud del gen (dato que no será necesario agregarlo a la investigación), cuenta con los valores de RPM, cuyos datos se normalizaron para trabajarlo desde los sets de datos. y por último las lecturas genéticas únicas. Se crearon, además archivos donde se aíslan las columnas que posteriormente se analizan para el mejor acomodo de datos.
+Los datos fueron descargados de GEO (https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE64517) en formato slsx, por lo que para su mejor manejo, se cambió el formato a uno más amigable y manejable con un convertidor en línea. 
+Las lecturas fueron conseguidas mediante el método RNAseq, secuenciados por Ilumina. Todos los archivos cuentan con la misma estructura: Nombre del cromosoma  y cromosoma(todos los archivos tienen el mismo nombre y un único cromosoma bacteriano), región de expresión, el valor de expresión, la longitud del gen (dato que no será necesario agregarlo a la investigación), cuenta con los valores de RPM, cuyos datos se normalizaron para trabajarlo desde los sets de datos. y por último las lecturas genéticas únicas. 
 Todos los datos anteriormente mencionados se encuentran en la carpeta de “data”, en un archivo comprimido.
 Con lo dicho anteriormente ¿Qué genes en la bacteria fijadora se encuentran prendidos o apagados en cada una de las condiciones a las que fueron expuestos? ¿Qué tanto se expresaron cada uno de los genes prendidos?
 
@@ -72,29 +72,33 @@ Formato:
 > h. La octava columna contiene lecturas genéticas totales y es parecida a las lecturas genéticas únicas pero sin ser tan específica o con cierta ambigüedad.
 
 #### Preguntas de investigación:
+
 > ¿Qué genes en la bacteria fijadora se encuentran prendidos o apagados en cada una de las condiciones a las que fueron expuestos?
 Respuesta: Primero, hacer la normalización entre todos los archivos por lotes de cada condición para posteriormente comprobar el nivel de expresión y guardar aquellos genes que estén prendidos y aquellos que estén apagados.
+
 > ¿Qué tanto se expresó cada uno de los genes prendidos?
 Respuesta: Al igual que en la respuesta anterior, los datos se deberán normalizar para poder compararlos, hacer un heatmap para mostrar, de acuerdo a la intensidad del color en la expresión de los genes en las diferentes condiciones.
 
 ## Resultados:
 
-![Figura 1: Primer PCA](image-1.png)
-![Figura 2: Segundo PCA](image-2.png)
-![Figura 3: Tercer PCA](image-3.png)
-Las figuras muestran las imágenes correspondientes a los PCA de cada lote. 
+### Unifactorial: 
+!["Fig 1. MA plot del análisis unifactorial"](../scripts/output/MA_CONDICIONES.jpg)
+!["Fig 2. Heatmap del análisis unifactorial"](../scripts/output/HEATMAP_CONDICIONES.jpg)
 
-![Figura 4: La unión de todos los PCA anteriores](image-4.png)
-
-![Figura 5: Diagrama de Venn con la expresión de los genes](image-5.png)
-
-![Figura 6: Heatmap que permite observar el nivel de expresión](image.png)
+### Multifactorial:
+!["Fig 3. MA plot del análisis multifactorial"](../scripts/output/MA_CONDICIONES.jpg)
+!["Fig 4. MA plot del análisis multifactorial"](../scripts/output/MA_GRUPOS.jpg)
+!["Fig 5. heatmap del análisis multifactorial"](../scripts/output/HEATMAP_CONDICIONES.jpg)
+!["Fig 6. heatmap del análisis multifactorial"](../scripts/output/HEATMAP_GRUPOS.jpg)
 
 ## Análisis y conclusiones:
-Los resulatados que se muestran en el PCA se tomaron en cuenta para los ejes los datos normalizados de expresión, los datos correspondientes a RPKM. Los puntos simmbolizan los genes que se encuentran. Nos parece algo que resaltar que, aún cuando se hizo el análisis de todos los lotes, la expresión de los genes se muestran diferentes. Sin embargo si existen algunos que concuerdan. Además, no permite saber que hay ciertos genes que se expresan a un nivel superior que los demás. Los colores que se muestran en la gráfica, corresponden a cada uno de los lotes. 
-Antes de realizar el diagrama de Venn, se verifiicó que las regiones fueran iguales, con la finalidad de hacer un análisis adecuado, sin embargo, se analizó el conjunto de genes expresados en ambas condiciones, únicamente para ver la expresión y el nivel. Con esto comprobamos que en proporción de genes compartidos en realidad es muy baja en comparación con los que se expresan en la condición N2. Los genes compartidos, no presentan expresión. Por otro lado, los que se muestran en cada una de las condiciones, presentan claramente, niveles de expresión distintos. 
-Con el heatmap, buscamos comparar el nivel de expresión de los datos crudos. Para ello, restamos la magnitud de la expresión de cada gen. Con el heatmap, podemos concluir, que la mayor parte de los genss se expresa de una manera muy similar, pues la variación del color no es muy evidente, esto al menos, como un primer vistazo. Pero si analizamos con más detenimiento, podemos ver que hay algunas líneas rojas y otras azules un poco más intensos. 
-
+Con el presente proyecto, podemos concluir que aún cuando se nota una diferencia en la expresión de los genes en las diferentes genes, también es necesario comprobar que esta expresión es significativa. 
+El análisis unifactorial nos permite únicamente contrastar las diferentes condiciones con respecto a las condiciones. En la imagen se puede comprobar que aunque son pocos, hay genes que se expresan diferencialmente. Estos genes son los que se muestran de color rojo. Y como había de suponer, los únicos genes que muestran una expresión significativa, se sobre expresan, deben ser estos los que se activan en cada condición. Sin embargo, con el MA plot es complicado percatarse de las muestras donde estos cambios se muestran, por lo que también se llevó a cabo un heatmap. 
+En las columnas del heatmap se muestran las muestras y en las filas lo equivalente a cada gen que muestran una expresión significativa, pero con parámetros un poco más laxos, con la intensión de tener un análisis más exploratorio. Se llevó a cabo también la clusterización de los genes y muestras, lo que muestra que muestras y genes son los que tienen una expresión diiferencial más similar. Por otro lado, el gradiente de color va de 1 con los tonos rojos, 0 con tonos amarillos y finalmente, -1 para tonos azules. El 1 de color rojo, muestra una expresión relativamente mayor con respecto a los demás genes, el 0 de color amarillo, muestra valores intermedios y el -1 muestra los valores correspondientes a una expresión relativamente menor. Con este contexto, podemos concluir que hay genes que se mantuvieron en valores intermedios, mientras que muy pocos se sobre expresaron y también poco se sub expresaron. Lo que quiere decir que hay pocos genes que se activan en respuesta a los cambios de estrés en su ,ambiente. Sin mencionar que de los aproximadamente 7,190 genes que se presentan en  la bacteria Frankia, alrededor de, 9 genes muestran una expresión significativa, es decir, menor a 0.05. Un número muy bajo considerando la cantidad de genes. Lo más probable, es que esto ocurra de esta manera debido a que trabajamos con una bacteria simbionte. 
+En cuanto al análisis multifactor, también es muy importante, debido a que junta no solo las condiciones, pero también los grupos y de esta manera analiza los datos. 
+Se llevó a cabo una gráfica MA de las condiciones, donde si se observan outliers, pero este no presentan una diferencia de expresión significativa. ientras que el MA de los grupos, tampoco muestra expresiones significativas, sin embargo, es de resaltar, que en este caso se muestra un outlier hacia los números negativos, es decir, sub expresión de ese gen, mientras que también hay otro que se sobre expresa. 
+En el heatmap de las condiciones, la imagen muestra, de la misma manera que en el unifactor, muy pocos genes, alrededor de 5. Y como se notó en las gráficas anteriores, cabe resaltar la sobre expresión de un gen. Por otro lado, el heatmap que muestra los grupos, únicamente tiene 2 genes que fueron los que lograron filtrarse. Y cabe resaltar, en esta imagen que, la muestra dos exhibe los genes más sobre expresados y los menos también.   
+Cabe también remarcar en las tres gráficas MA presentadas en el trabajo, muestran que los genes están muy cerca del 0, en el eje de las y, esto se debe a que la expresión de esos genes se mantuvieron estables, lo que como se había mencionado con anterioridad, es de esperarse de una bacteria simbionte. 
 Con los datos aquí presentes, podemos concluir que si existen diferencias importantes en la expresión de genes en las diferentes condiciones. Lo que a su vez, sugiere que la bacteria, aún cuando es simbiótica, necesita activar un mecanismo que le permita sobrevivir a las condiciones de estrés en donde está expuesta. Aún cuando hay genes housekeeping, en sus condiciones simbióticas no necesitan expresar tantos genes.
 
 ## Referencias:
