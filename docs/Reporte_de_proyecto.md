@@ -1,7 +1,7 @@
 # Comparación de datos de expresión de la bacteria fijadora de nitrógeno FRANKIA.
 
-Nombre: <!-- Ángel Román Zamora López (<angelzl@lcg.unam.mx>) -->
-Nombre: <!-- Erika Nathalia Ordoñez Guzmán (<erikaog@lcg.unam.mx) -->
+Nombre:  Ángel Román Zamora López (<angelzl@lcg.unam.mx>)
+Nombre:  Erika Nathalia Ordoñez Guzmán (<erikaog@lcg.unam.mx>)
 
 Fecha: 01/10/2024
 
